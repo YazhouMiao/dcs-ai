@@ -21,7 +21,7 @@ models.add({
   sensitivity: '0.9,0.9',
   hotwords : ['小度小度',"小度小度"]
 });
-*/
+
 models.add({
   //file: __dirname+'/resources/snowboy.umdl',
   //file: __dirname+'/resources/alexa.umdl',
@@ -29,7 +29,17 @@ models.add({
   sensitivity: '0.9',
   hotwords : '小度小度'
 });
-
+*/
+models.add({
+  file: __dirname+'/snowboy/resources/alice.pmdl',
+  sensitivity: '0.6',
+  hotwords: 'Alice'
+});
+models.add({
+  file:__dirname+'/snowboy/resources/alice_fm.pmdl',
+  sensitivity: '0.6',
+  hotwards: 'Alice_fm'
+});
 const detector = new Detector({
   resource: __dirname+"/snowboy/resources/common.res",
   models: models,
