@@ -4,6 +4,9 @@
 logs
 *.log
 npm-debug.log*
+package-*.json
+dcs_config.json
+const
 pids
 *.pid
 *.seed
@@ -11,6 +14,8 @@ node_modules
 /coverage
 /.nyc_output
 /.nyc_tmp
+snowboy/build/
+snowboy/package-lock.json
 *.sublime-project
 *.sublime-workspace
 
