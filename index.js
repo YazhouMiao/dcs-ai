@@ -15,17 +15,17 @@
 */
 const DcsClient=require("./dcs_client");
 const DcsController=require("./dcs_controller");
-const Recorder=require("./recorder");
 const config=require("./dcs_config.json");
 const child_process=require("child_process");
 const fs = require('fs');
-var recorder=new Recorder();
-var client=new DcsClient({recorder:recorder});
+const snowboy = require('./snowboy');
+
+
+var client=new DcsClient({recorder: snowboy.recorder});
 
 let controller=new DcsController();
 
 controller.setClient(client);
-
 
 controller.on("directive",(response)=>{
     console.log("on directive: "+JSON.stringify(response,null,2));
@@ -76,16 +76,6 @@ var isRaspberrypi=unameAll.match(/raspberrypi/);
 
 
 
-let snowboy = require("./snowboy.js");
-const BufferManager=require("./wakeup/buffermanager").BufferManager;
-let bm=new BufferManager();
-snowboy.start(recorder.start().out());
-snowboy.on("silence",()=>{
-    bm.clear();
-});
-snowboy.on("sound",(buffer)=>{
-    bm.add(buffer);
-});
 snowboy.on("hotword",function(index, hotword, buffer){
     console.log("hotword "+index);
     bm.add(buffer);

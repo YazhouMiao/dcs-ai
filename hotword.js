@@ -4,17 +4,31 @@
  */
 
 const fs = require('fs');
+const _ = require('lodash');
 class Hotword {
   constructor (config) {
     config = config || {};
-    if(!config.file || !fs.existsSync(config.file)){
-      console.error('initial paramater should have valid file path');
-      return;
+    
+    if (typeof config.file === 'string') {
+        if(!fs.existsSync(config.filepath)){
+            console.error('"' + config.filepath + '" is not a valid file path');
+            return;
+        }
+    } else if(_.isArray(config.file)){
+        _.forEach(config.file, (file) => {
+            if(!fs.existsSync(file)){
+                console.error('"' + file + '" is not a valid file path');
+                return;
+            }
+        })
+    } else {
+        console.error('"' + file + '" valid file path');
+        return;
     }
 
     this.file = config.file;
     this.sensitivity = config.sensitivity > 0 && config.sensitivity <= 1 ? config.sensitivity : 0.5;
-    this.hotwords = config.hotwords;
+    this.alias = config.alias ? config.alias : 'alice';
     this.callback = config.callback;
   }
 
@@ -25,8 +39,6 @@ class Hotword {
       console.error('callback is not a function!');
     }
   }
-
-
 }
 
 
