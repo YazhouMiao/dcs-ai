@@ -21,10 +21,14 @@ module.exports.init = function(words){
     }
     init = true;
     
-    words = words || [];
+    words = words || {};
     
     // add hotword to model
-    _.forEach(words, addHotword);
+    if(_.isArray(words)) {
+        _.forEach(words, addHotword);
+    } else {
+        addHotword(words);
+    }
     
     detector = new Detector({
         resource: __dirname+"/snowboy/resources/common.res",
@@ -50,7 +54,7 @@ module.exports.init = function(words){
         // together with the <buffer> in the "sound" event if you want to get audio
         // data after the hotword.
         console.log('hotword', index, hotword);
-        hotwords[hotword].trigger();
+        hotwords[hotword].trigger(buffer);
     });
 }
 
@@ -68,7 +72,7 @@ module.exports.stop=function(){
     audioStream.unpipe(detector);
 };
 
-module.exports.soundBuffer = bm;
+module.exports.bm = bm;
 
 module.exports.recorder = recorder;
 
