@@ -11,10 +11,11 @@ const models = new Models();
 let recorder=new Recorder();
 let bm = new BufferManager();
 let hotwords = [];
+let snowboy = {};
 let init = false;
 let detector, audioStream;
 
-module.exports.init = function(words){
+snowboy.init = function(words){
     if(init) {
         console.log('Snowboy initialization has been called.');
         return;
@@ -58,7 +59,7 @@ module.exports.init = function(words){
     });
 }
 
-module.exports.start = function(){
+snowboy.start = function(){
     if(!init) {
         console.error('Please run init before start.');
         return;
@@ -68,13 +69,13 @@ module.exports.start = function(){
     audioStream.pipe(detector);
 };
 
-module.exports.stop=function(){
+snowboy.stop=function(){
     audioStream.unpipe(detector);
 };
 
-module.exports.bm = bm;
+snowboy.bm = bm;
 
-module.exports.recorder = recorder;
+snowboy.recorder = recorder;
 
 // add hotword
 function addHotword(hotword){
@@ -101,6 +102,7 @@ function addHotword(hotword){
     }
 }
 
+module.exports = snowboy;
 // module.exports.on=detector.on.bind(detector);
 // module.exports.once=detector.once.bind(detector);
 // module.exports.removeListener=detector.removeListener.bind(detector);
