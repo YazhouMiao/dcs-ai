@@ -16,8 +16,9 @@
 
 const snowboy = require('./snowboy');
 const alice = require('./hotword/alice');
+const child_process = require('child_process');
 
-var unameAll=child_process.execSync("uname -a").toString();
+var unameAll = child_process.execSync("uname -a").toString();
 var isRaspberrypi=unameAll.match(/raspberrypi/);
 
 if(!isRaspberrypi) {
