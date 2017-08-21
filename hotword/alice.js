@@ -1,8 +1,8 @@
 /*
 * dcs hotword server
 */
-const DcsClient = require("./dcs_client");
-const DcsController = require("./dcs_controller");
+const DcsClient = require("../dcs_client");
+const DcsController = require("../dcs_controller");
 const config = require("../dcs_config.json");
 const child_process = require("child_process");
 const fs = require('fs');
