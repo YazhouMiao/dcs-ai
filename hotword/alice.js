@@ -36,7 +36,7 @@ function callback(buffer) {
 }
 
 module.exports = new Hotword({
-    file: [__dirname + '/../snowboy/resources/sound/alice.pmdl', __dirname + '/../snowboy/resources/sound/alice_fm.pmdl',],
+    file: [__dirname + '/../snowboy/resources/alice.pmdl', __dirname + '/../snowboy/resources/alice_fm.pmdl',],
     sensitivity: 0.5,
     alias: 'alice',
     callback: callback
