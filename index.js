@@ -14,7 +14,7 @@
 * limitations under the License.
 */
 
-const snowboy = require('./snowboy');
+const snowboy = require('./snowboy.js');
 const alice = require('./hotword/alice');
 const child_process = require('child_process');
 
