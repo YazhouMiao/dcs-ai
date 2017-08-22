@@ -7,7 +7,7 @@ const config = require("../dcs_config.json");
 const child_process = require("child_process");
 const fs = require('fs');
 const path = require('path');
-const snowboy = require('../snowboy');
+const snowboy = require('../snowboy.js');
 const Hotword = require('../hotword');
 
 var client = new DcsClient({recorder: snowboy.recorder});
@@ -29,7 +29,7 @@ function callback(buffer) {
     fs.writeFileSync("wake.pcm", snowboy.bm.toBuffer());
     snowboy.bm.clear();
     
-    var cmd = config.play_cmd + " -t wav '" + path.resolve(__dirname,"/../resource/sound/nihao.wav'");
+    var cmd = config.play_cmd + " -t wav '" + __dirname + "/../resource/sound/nihao.wav'";
     child_process.exec(cmd,()=>{
         controller.startRecognize();
     });

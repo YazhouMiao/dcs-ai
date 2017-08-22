@@ -1,4 +1,4 @@
-import {HotwordModels} from "./snowboy/lib/node/index";
+//import {HotwordModels} from "./snowboy/lib/node/index";
 
 const Detector = require('./snowboy').Detector;
 const Models = require('./snowboy').Models;
